@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $posts = Post::all();
-    return view('posts.index', compact('posts'));
-});
+Route::get('posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 
 Auth::routes();
 
