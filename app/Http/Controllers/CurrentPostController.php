@@ -8,7 +8,7 @@ class CurrentPostController extends Controller
     {
         $user = auth()->user();
 
-        $posts = $user->posts;
+        $posts = $user->posts()->paginate(10);
 
         return view('admin.home', compact('posts')) ;
     }
