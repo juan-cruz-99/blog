@@ -17,6 +17,7 @@ class CreateVisitedPostsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
+            $table->dateTime('last_visited_at');
             $table->timestamps();
 
             $table->foreign('user_id')
