@@ -29,5 +29,9 @@
   </div>
 
   <x-categories-widget :categories="$categories" />
+  
+  @if(Auth::check())
+    <x-last-visited :posts="$lastVisited" />
+  @endif
     
 @endsection

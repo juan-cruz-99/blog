@@ -18,7 +18,16 @@ class PostController extends Controller
             });
         })->latest()->paginate(5);
 
-        return view('posts.index', compact('posts', 'categories'));
+        $data = compact('posts', 'categories');
+
+        /** @var App\Models\User */
+        $user = auth()->user();
+
+        if (!is_null($user)) {
+            $data['lastVisited'] = $user->visitedPosts()->take(5)->get();
+        }
+
+        return view('posts.index', $data);
     }
 
     public function show(Post $post)
