@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\Category;
 
 class PostController extends Controller
 {
@@ -22,6 +23,16 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        /** @var App\Models\User */
+        $user = auth()->user();
+
+        if (!is_null($user)) {
+            $user->visitedPosts()->syncWithoutDetaching([
+                $post->id => [
+                    'last_visited_at' => Carbon::now()
+                ]]);
+        }
+
         $post->load(['user', 'comments.user']);
 
         return view('posts.show', compact('post'));

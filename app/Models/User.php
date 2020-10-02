@@ -47,6 +47,8 @@ class User extends Authenticatable
 
     public function visitedPosts()
     {
-        return $this->belongsToMany(Post::class, 'visited_posts');
+        return $this->belongsToMany(Post::class, 'visited_posts')
+            ->withPivot('last_visited_at')
+            ->latest('last_visited_at');
     }
 }
