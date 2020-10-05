@@ -19,6 +19,9 @@ Route::get('posts/{post}', [App\Http\Controllers\PostController::class, 'show'])
 
 Route::get('home', [App\Http\Controllers\CurrentPostController::class, 'index'])->name('admin.home');
 
+Route::get('home/create', [App\Http\Controllers\CurrentPostController::class, 'create'])->name('posts.create');
+Route::post('posts', [App\Http\Controllers\CurrentPostController::class, 'store'])->name('posts.store');
+
 Route::post('comments', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 Auth::routes();
 
