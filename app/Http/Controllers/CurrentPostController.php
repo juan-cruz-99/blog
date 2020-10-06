@@ -41,4 +41,13 @@ class CurrentPostController extends Controller
 
         return redirect()->route('admin.home');
     }
+
+    public function destroy(Post $post)
+    {
+        if ($post->user_id == auth()->user()->id) {
+            $post->delete();
+        }
+
+        return redirect()->back();
+    }
 }
