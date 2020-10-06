@@ -3,6 +3,7 @@
 @section('content')
 <h1>MY POSTS</h1>
 <a href="{{ route('posts.create')}}" >New post</a>
+@csrf
     <table class="table">
         <thead>
             <tr>
