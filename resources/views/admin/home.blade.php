@@ -18,6 +18,9 @@
                 <td>{{$post->title}}</td>
                 <td>{{ $post->content }}</td>
                 <td>
+                     
+                    <a href="{{route('posts.edit', $post->id)}}">edit</a>
+
                     <form method="POST" action="{{route('posts.destroy',['post'=>$post->id])}}">
                         @csrf
                         @method('DELETE')

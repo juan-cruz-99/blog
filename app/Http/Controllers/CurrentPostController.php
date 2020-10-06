@@ -50,4 +50,32 @@ class CurrentPostController extends Controller
 
         return redirect()->back();
     }
+
+    public function edit(Post $post)
+    {
+        if ($post->user_id != auth()->user()->id) {
+            return redirect()->back();
+        }
+
+        $post->load('categories');
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $data = $request->validate([
+            'title' => 'required',
+            'category' => 'required|exists:categories,id',
+            'content' => 'required',
+            'description' => 'required',
+        ]);
+
+        $post->update(Arr::except($data, ['category']));
+
+        $post->categories()->sync($data['category']);
+
+        return redirect()->route('admin.home');
+    }
 }
