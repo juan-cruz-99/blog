@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form method="POST" action="{{route('posts.store')}}">
+<form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
 
   @csrf
 
@@ -13,6 +13,11 @@
           {{$message}}
       @enderror
     </div>
+
+    <label>Add img</label>
+    <input name="img" type="file" />
+     
+
 
     <div class="form-group">
       <label >Description</label>

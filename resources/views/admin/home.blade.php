@@ -18,6 +18,7 @@
             <tr>
                 <td>{{$post->title}}</td>
                 <td>{{ $post->content }}</td>
+
                 <td>
                      
                     <a href="{{route('posts.edit', $post->id)}}">edit</a>

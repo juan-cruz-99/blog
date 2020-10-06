@@ -33,6 +33,8 @@ class CurrentPostController extends Controller
             'description' => 'required',
         ]);
 
+        $data['img'] = $request->file('img')->store('img', 'public');
+
         $data['user_id'] = auth()->user()->id;
 
         $post = Post::create(Arr::except($data, ['category']));

@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('description')->nullable;
             $table->text('content');
+            $table->string('img')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
