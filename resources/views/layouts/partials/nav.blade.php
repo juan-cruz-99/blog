@@ -7,11 +7,30 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url('/login')}}">
-                Login
-              <span class="sr-only">(current)</span>
-            </a>
+          @if(Auth::check())
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
+            </li>
+
+          @else
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/login')}}">
+                  Login
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+
+          @endif
         </ul>
       </div>
     </div>
