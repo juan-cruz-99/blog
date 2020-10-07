@@ -20,13 +20,11 @@ class CreateVisitedPostsTable extends Migration
             $table->dateTime('last_visited_at');
             $table->timestamps();
 
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
 
-            $table->foreign('post_id')
-                ->references('id')
-                ->on('posts');
+            $table->foreign('post_id')->references('id')->on('posts')
+                ->onDelete('cascade');
         });
     }
 

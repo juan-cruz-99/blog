@@ -48,6 +48,10 @@ class CurrentPostController extends Controller
     public function destroy(Post $post)
     {
         if ($post->user_id == auth()->user()->id) {
+            if (!is_null($post->img)) {
+                Storage::disk('public')->delete($post->img);
+            }
+
             $post->delete();
         }
 
