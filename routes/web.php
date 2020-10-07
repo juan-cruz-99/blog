@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('posts/{post}', [App\Http\Controllers\CurrentPostController::class, 'destroy'])->name('posts.destroy');
     Route::get('posts/{post}/edit', [CurrentPostController::class, 'edit'])->name('posts.edit');
     Route::put('posts/{post}', [CurrentPostController::class, 'update'])->name('posts.update');
+    Route::put('posts/{post}/like', [App\Http\Controllers\CurrentPostController::class, 'like'])->name('posts.like');
 });
 
 Route::get('posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');

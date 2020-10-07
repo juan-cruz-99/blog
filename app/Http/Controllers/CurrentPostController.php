@@ -93,4 +93,12 @@ class CurrentPostController extends Controller
 
         return redirect()->route('admin.home');
     }
+
+    public function like(Post $post)
+    {
+        $user = auth()->user();
+        $post->likedBy()->toggle([$user->id]);
+
+        return redirect()->back();
+    }
 }
