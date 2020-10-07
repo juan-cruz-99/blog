@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CurrentPostController extends Controller
 {
@@ -73,6 +74,14 @@ class CurrentPostController extends Controller
             'content' => 'required',
             'description' => 'required',
         ]);
+
+        if ($request->hasFile('img')) {
+            if (!is_null($post->img)) {
+                Storage::disk('public')->delete($post->img);
+            }
+
+            $data['img'] = $request->file('img')->store('img', 'public');
+        }
 
         $post->update(Arr::except($data, ['category']));
 

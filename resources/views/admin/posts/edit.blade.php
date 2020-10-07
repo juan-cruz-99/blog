@@ -2,16 +2,19 @@
 
 @section('content')
 
-<form method="POST" action="{{route('posts.update', ['post'=> $post->id])}}">
+<form method="POST" action="{{route('posts.update', ['post'=> $post->id])}}" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="form-group">
       <label >Titulo</label>
-        <input name="title" class="form-control" value ="{{$post->title}}">
+        <input name="title" class="form-control" value ="{{$post->title}}" >
         @error('title')
         {{$message}}
         @enderror
     </div>
+
+    <label>Add img</label>
+    <input name="img" type="file" />
 
     <div class="form-group">
         <label >Description</label>
