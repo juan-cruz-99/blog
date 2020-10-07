@@ -18,7 +18,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+        <img class="card-img-top" src="{{$post->img ? asset('storage/' . $post->img) : 'http://placehold.it/750x300' }}" alt="Card image cap">
 
         <hr>
 
